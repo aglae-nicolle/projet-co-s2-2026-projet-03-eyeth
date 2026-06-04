@@ -53,6 +53,16 @@ export async function getMots() {
     }
 }
 
+export async function getOneMot(id) {
+    try {
+        const mot = await pb.collection("mots").getOne(id);
+        return mot;
+    } catch (e) {
+        console.error(e);
+        return "";
+    }
+}
+
 export async function getMotsIllustres() {
     try {
         const mots = await pb.collection("mots").getFullList({
