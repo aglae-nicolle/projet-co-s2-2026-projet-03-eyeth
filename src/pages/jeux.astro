@@ -32,7 +32,7 @@ const elements = [
 ];
 ---
 
-<Layout title="jeux" hideFooter="true">
+<Layout title="jeux" hideFooter={true}>
     <Hero hideImage="true" />
     <div
         class="relative w-full h-[calc(100dvh-9.125rem)] max-w-5xl aspect-video bg-beige overflow-hidden group"
@@ -49,14 +49,14 @@ const elements = [
                             <p>{item.description}</p>
                             <a
                                 href={item.href}
-                                class=" flex justify-center items-center bg-bleu text-beige rounded-lg w-47.25 h-10 "
+                                class="flex justify-center items-center bg-bleu text-beige rounded-lg w-[47.25rem] h-10"
                             >
                                 Jouer dès maintenant
                             </a>
                             <Image
                                 src={item.image}
                                 alt="Image d'illustration"
-                                class="max-w-75 mx-auto mt-5 object-cover"
+                                class="max-w-[75rem] mx-auto mt-5 object-cover"
                             />
                         </div>
                     ))

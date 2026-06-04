@@ -4,11 +4,13 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import AuthGuard from "../components/AuthGuard.astro";
 
-const { title, hideFooter = false, noAuth = false } = Astro.props;
-
 interface Props {
 	title: string;
+	hideFooter?: boolean;
+	noAuth?: boolean;
 }
+
+const { title, hideFooter = false, noAuth = false } = Astro.props;
 ---
 
 <html lang="fr">
@@ -55,34 +57,26 @@ interface Props {
 		</div>
 
 		<slot />
-		{hideFooter ? false : <Footer />}
+		{!hideFooter && <Footer />}
 
 		<script>
-			// Fonction de vérification du type d'appareil
 			function checkDevice() {
 				const restrictionOverlay =
 					document.getElementById("device-restriction");
-				const mainContent = document.getElementById("main-content");
 
-				// Seuil de coupure : 768px (standard pour séparer mobile et tablette)
-				// Vous pouvez ajuster cette valeur selon vos besoins
 				const mobileThreshold = 768;
 
 				if (window.innerWidth > mobileThreshold) {
-					// Affiche l'overlay et bloque le scroll
 					restrictionOverlay?.classList.remove("hidden");
 					document.body.style.overflow = "hidden";
 				} else {
-					// Cache l'overlay et permet le scroll
 					restrictionOverlay?.classList.add("hidden");
 					document.body.style.overflow = "auto";
 				}
 			}
 
-			// Vérification au chargement
 			document.addEventListener("DOMContentLoaded", checkDevice);
 
-			// Vérification au redimensionnement de la fenêtre
 			window.addEventListener("resize", checkDevice);
 		</script>
 	</body>
