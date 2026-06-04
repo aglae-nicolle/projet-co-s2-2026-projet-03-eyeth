@@ -5,6 +5,10 @@ import Footer from "../components/Footer.astro";
 import AuthGuard from "../components/AuthGuard.astro";
 
 const { title, hideFooter = false, noAuth = false } = Astro.props;
+
+interface Props {
+	title: string;
+}
 ---
 
 <html lang="fr">
@@ -22,7 +26,64 @@ const { title, hideFooter = false, noAuth = false } = Astro.props;
 	</head>
 	<body class="bg-beige text-bleu">
 		<Header />
+		<div
+			id="device-restriction"
+			class="fixed inset-0 z-50 bg-beige flex flex-col items-center justify-center text-bleu p-6 hidden"
+		>
+			<div class="max-w-md text-center space-y-6">
+				<div class="space-y-4">
+					<h1 class="text-3xl font-bold text-red-500">
+						Accès réservé aux mobiles
+					</h1>
+					<p class="text-lg text-bleu">
+						Désolé, ce site est conçu exclusivement pour une
+						expérience sur téléphone mobile.
+					</p>
+					<p class="text-sm text-bleu">
+						Merci de consulter ce site depuis votre smartphone pour
+						accéder à tout le contenu.
+					</p>
+				</div>
+
+				<div class="pt-6">
+					<p class="text-xs text-bleu">
+						Veuillez réduire la fenêtre ou utiliser un appareil
+						mobile.
+					</p>
+				</div>
+			</div>
+		</div>
+
 		<slot />
 		{hideFooter ? false : <Footer />}
+
+		<script>
+			// Fonction de vérification du type d'appareil
+			function checkDevice() {
+				const restrictionOverlay =
+					document.getElementById("device-restriction");
+				const mainContent = document.getElementById("main-content");
+
+				// Seuil de coupure : 768px (standard pour séparer mobile et tablette)
+				// Vous pouvez ajuster cette valeur selon vos besoins
+				const mobileThreshold = 768;
+
+				if (window.innerWidth > mobileThreshold) {
+					// Affiche l'overlay et bloque le scroll
+					restrictionOverlay?.classList.remove("hidden");
+					document.body.style.overflow = "hidden";
+				} else {
+					// Cache l'overlay et permet le scroll
+					restrictionOverlay?.classList.add("hidden");
+					document.body.style.overflow = "auto";
+				}
+			}
+
+			// Vérification au chargement
+			document.addEventListener("DOMContentLoaded", checkDevice);
+
+			// Vérification au redimensionnement de la fenêtre
+			window.addEventListener("resize", checkDevice);
+		</script>
 	</body>
 </html>
