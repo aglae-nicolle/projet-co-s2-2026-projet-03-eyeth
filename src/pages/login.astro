@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 ---
 
-<Layout title="connexion" hideFooter="true" noAuth="true">
+<Layout title="connexion" hideFooter={true} noAuth={true}>
     <Hero hideImage="true" />
     <h2>Content de vous revoir !</h2>
 
@@ -42,6 +42,7 @@ import Hero from "../components/Hero.astro";
 
         <button
             id="login-btn"
+            type="button"
             onclick="handleLogin()"
             class="group relative w-full flex justify-center py-3 px-4 my-6 border border-transparent rounded-lg text-white bg-bleu text-xl"
         >

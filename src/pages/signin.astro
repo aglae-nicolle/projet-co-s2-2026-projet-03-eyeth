@@ -75,7 +75,7 @@ import Hero from "../components/Hero.astro";
                     type="checkbox"
                     class="h-4 w-4 my-5 accent-bleu focus:ring-bleu border-bleu rounded"
                 />
-                <label for="remember-me" class="ml-2 block text-bleu text-sm">
+                <label for="pc-cgu" class="ml-2 block text-bleu text-sm">
                     J'accepte la <a href="/politiqConf" class="underline"
                         >politique de confidentialité</a
                     > et les <a href="/cgu" class="underline"
@@ -90,7 +90,9 @@ import Hero from "../components/Hero.astro";
         </div>
 
         <button
-            type="submit"
+            id="register-btn"
+            type="button"
+            onclick="handleRegister()"
             class="group relative w-full flex justify-center py-3 px-4 border border-transparent rounded-lg text-beige bg-bleu text-xl"
         >
             S'inscrire
