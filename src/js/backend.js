@@ -3,6 +3,28 @@ const POCKETBASE_URL = "https://eyeth-pocketbase.lola-brouart.fr";
 const pb = new PocketBase(POCKETBASE_URL);
 export { pb };
 
+export async function loginUser(email, password) {
+    try {
+        return await pb.collection("users").authWithPassword(email, password);
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function registerUser(email, password, username) {
+    try {
+        await pb.collection("users").create({
+            email,
+            password,
+            passwordConfirm: password,
+            username,
+        });
+        return await pb.collection("users").authWithPassword(email, password);
+    } catch (error) {
+        throw error;
+    }
+}
+
 export async function getPacks(collection = "packs") {
     try {
         return await pb.collection(collection).getFullList();
