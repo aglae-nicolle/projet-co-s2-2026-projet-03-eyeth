@@ -35,7 +35,7 @@ const elements = [
 <Layout title="jeux" hideFooter={true}>
     <Hero hideImage="true" />
     <div
-        class="relative w-full h-[calc(100dvh-9.125rem)] max-w-5xl aspect-video bg-beige overflow-hidden group"
+        class="relative w-full h-screen max-w-5xl aspect-video bg-beige overflow-hidden group"
     >
         <div class="relative items-center h-full flex flex-col w-full">
             <div
@@ -64,9 +64,7 @@ const elements = [
             </div>
         </div>
     </div>
-    <div
-        class="absolute bottom-5 left-0 right-0 flex justify-center gap-8 z-10"
-    >
+    <div class="absolute pb-10 left-0 right-0 flex justify-center gap-8 z-10">
         <button
             id="btn-prev"
             class="rounded-full focus:outline-none"
